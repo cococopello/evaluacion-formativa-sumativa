@@ -16,22 +16,24 @@
       display: flex;
       justify-content: space-around;
       align-items: flex-start;
-      padding: 20px;
-      background: url('fondo.png') no-repeat center center;
-      background-size: cover;
-      min-height: 60vh;
+      width: 100%;
+      max-width: 1536px;
+      margin: 0 auto;
+      /* Fondo completo, escala para mostrar toda la imagen sin recortar */
+      background: url('fondo.png') no-repeat center top;
+      background-size: contain;
+      /* Ajusta altura mínima para mostrar la imagen entera antes de los draggables */
+      min-height: 75vh;
     }
     .column {
       width: 45%;
-      min-height: 300px;
-      border: 2px dashed #888;
-      border-radius: 8px;
-      padding: 10px;
-      background: rgba(255,255,255,0.8);
+      padding: 20px;
+      /* Transparente y sin borde para dejar ver el fondo */
+      background: transparent;
+      border: none;
     }
     .column h2 {
-      text-align: center;
-      margin-top: 0;
+      display: none;
     }
     .draggables {
       display: flex;
@@ -70,16 +72,16 @@
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" id="drop-zones">
     <div id="formativa" class="column"
          ondragover="event.preventDefault()"
          ondrop="handleDrop(event, 'formativa')">
-      <h2>Evaluación Formativa</h2>
+      <!-- Zona de evaluación formativa -->
     </div>
     <div id="sumativa" class="column"
          ondragover="event.preventDefault()"
          ondrop="handleDrop(event, 'sumativa')">
-      <h2>Evaluación Sumativa</h2>
+      <!-- Zona de evaluación sumativa -->
     </div>
   </div>
 
@@ -141,7 +143,6 @@
       } else {
         feedbackEl.style.color = 'red';
         feedbackEl.innerHTML = 'Revisa tus respuestas. Recuerda:<br>• La evaluación formativa acompaña el proceso y busca mejorar el aprendizaje a través de la retroalimentación.<br>• La evaluación sumativa se da al final y sirve para medir logros.';
-        // devolver incorrectos al contenedor original
         const container = document.getElementById('draggables');
         incorrect.forEach(item => container.appendChild(item));
       }
