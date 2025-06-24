@@ -19,18 +19,21 @@
       width: 100%;
       max-width: 1536px;
       margin: 0 auto;
-      /* Fondo completo, escala para mostrar toda la imagen sin recortar */
+      /* Fondo completo escalable */
       background: url('fondo.png') no-repeat center top;
       background-size: contain;
-      /* Ajusta altura mínima para mostrar la imagen entera antes de los draggables */
       min-height: 75vh;
     }
     .column {
       width: 45%;
       padding: 20px;
-      /* Transparente y sin borde para dejar ver el fondo */
-      background: transparent;
-      border: none;
+      /* Fondo semitransparente y borde para zona de drop */
+      background: rgba(255, 255, 255, 0.6);
+      border: 2px dashed #888;
+      border-radius: 8px;
+      /* Asegura que la zona ocupe toda la altura del contenedor */
+      min-height: 75vh;
+      box-sizing: border-box;
     }
     .column h2 {
       display: none;
